@@ -1,0 +1,197 @@
+body {
+  background-color: #88F9E5;
+}
+
+.parent {
+  max-width: 430px;
+  margin: 10% auto;
+  
+}
+
+.form-signin-heading{
+  color:#ED2855;
+  margin-bottom: 2rem;
+  padding:0;
+  margin-left:-22%;
+  padding-left:22%;
+  border-left: 2px solid #ED2855;
+}
+
+.form-signin-registration{
+  color:#FEFFFF;
+  margin-bottom: 2rem;
+  padding:0;
+  margin-left:-21%;
+  padding-left:20%;
+  border-left: 2px solid #fff;
+}
+
+#register{
+  position:absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size:5rem;
+  top:5%;
+  left:85%;
+  color:#fff;
+  border-radius:50%;
+  min-height:10rem;
+  min-width:10rem;
+  background-color:#ED2855;
+  cursor:pointer;
+}
+
+
+.background-card,
+.form-signin,
+.form-registeration {
+  position: absolute;
+  padding: 50px;
+  min-height: 250px;
+  background-color: #FEFFFF;
+  border-radius: 5px;
+}
+
+.background-card {
+  min-width: 320px;
+  margin-left: 5px;
+  opacity: 0.7;
+  z-index: 1;
+}
+
+.form-signin {
+  min-width: 330px;
+  margin-top: 5px;
+  z-index: 2;
+}
+
+.form-registeration {
+  background-color:#ED2855;
+  min-width: 340px;
+  margin-top: 10px;
+  margin-left: -5px;
+  z-index: 3;
+  display: none;
+}
+
+.form-control {
+  padding: 0.5rem 0;
+  border: none;
+  border-bottom: 2px solid #D8DFDD;
+  box-shadow: none;
+  border-radius: 0px;
+  
+}
+
+
+.form-control:focus {
+  color: #464a4c;
+  background-color: #fff;
+  border-color: #ED2855;
+  box-shadow: none;
+  transition: border-color ease 1s;
+  outline: none;
+}
+
+.form-control::-webkit-input-placeholder {
+  color: #D8DFDD;
+  opacity: 1;
+}
+
+.form-control::-moz-placeholder {
+  color: #D8DFDD;
+  opacity: 1;
+}
+
+.form-control:-ms-input-placeholder {
+  color: #D8DFDD;
+  opacity: 1;
+}
+
+.form-control::placeholder {
+  color: #D8DFDD;
+  opacity: 1;
+}
+ 
+
+
+.form-control.red{
+  background-color:#ED2855;
+  color:#FEFFFF;
+}
+
+.form-control.rd::-webkit-input-placeholder {
+  color: #FEFFFF;
+  opacity: 1;
+}
+
+.form-control.red::-moz-placeholder {
+  color: #FEFFFF;
+  opacity: 1;
+}
+
+.form-control.red:-ms-input-placeholder {
+  color: #FEFFFF;
+  opacity: 1;
+}
+
+.form-control.red::placeholder {
+  color: #FEFFFF;
+  opacity: 1;
+}
+
+.form-control.red:focus {
+  color: #FEFFFF;
+  background-color: inherit;
+  border-color: inherit;
+  box-shadow: none;
+  transition: border-color ease 1s;
+  outline: none;
+}
+
+.close{
+  color:#FEFFFF;
+  opacity: 1;
+}
+
+.btn-signup{
+  display:block;
+  width:100%;
+  background-color:#FEFFFF;
+  margin: 4rem auto 2rem auto;
+  color:#ED2855;
+  border-radius:0px;
+  border:none;
+}
+
+
+.btn-go{
+  display:block;
+  width:80%;
+  margin: 4rem auto 2rem auto;
+  border: 0.25rem solid #D8DFDD;
+  background-color:#fff;
+  border-radius:0px;
+  color:#D8DFDD;
+}
+
+.btn-go.active{
+  color:#ED2855;
+  border-color:#ED2855;
+}
+
+.btn-go.animate{
+  background-color:#ED2855;
+  color: #fff;
+}
+
+
+
+#forgotButton{
+  text-align: center;
+  margin-top: 2rem;
+  
+}
+
+

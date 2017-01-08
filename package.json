@@ -4,7 +4,8 @@
   "description": "a simple voting app",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "node_modules/.bin/mocha --reporter nyan"
   },
   "author": "shaw",
   "license": "ISC",

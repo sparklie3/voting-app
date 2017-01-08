@@ -1,0 +1,70 @@
+/*
+white FEFFFF 
+light green/blue: 88F9E5
+darker green/blue: 6BEED7 
+red: ED2855 
+light gray: D8DFDD
+dark gray: 7FA59E 
+*/
+
+body {
+  color:#000;
+  background-color: #88F9E5;
+}
+
+
+
+.container-fluid {
+  max-width: 430px;
+  margin: 10% auto;
+  padding:2rem 2rem;
+  border-radius:0.5rem;
+  background-color:#FEFFFF;
+}
+
+.question{
+  display:flex;
+  align-items: center;
+  color: #ED2855;
+  background-color:#FEFFFF;
+  min-height:10rem;
+}
+
+.progress {
+  margin: 0;
+  display:flex;
+  align-items: center;
+  height:5rem;
+  background-color: #7FA59E;
+  border-radius: 0;
+  font-size:1.5rem;
+  line-height: 100%;
+  border:  none;
+  border-bottom: 1px solid #FEFFFF;
+}
+
+
+.progress-bar {
+  color:#7FA59E;
+  width:100%;
+  font-size:2rem;
+  display:flex;
+  align-items: center;
+  white-space:nowrap;
+  background-color: #ED2855;
+}
+
+.left-text{
+  color:#FEFFFF;
+  font-size:1.5rem;
+  padding-left:3rem;
+  overflow: visible;
+}
+
+.right-text {
+  color:#FEFFFF;
+  padding-right:2rem;
+  text-align:right;
+  width:100%;
+  
+}

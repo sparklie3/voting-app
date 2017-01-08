@@ -40,22 +40,22 @@
       </div>
 
       <div class="form-registeration">
-        <form method="post">
+        <form method="post" action="/register">
           <button type="button"  class="close" style="color:white">&times;</button>
           <div class="h4 form-signin-registration">
             REGISTER
           </div>
           <div class="form-group">
-            <label for="inputEmail"  class="sr-only">Email Address</label>
-            <input type="email" name="emailRegister" class="red form-control " placeholder="Email address"  required autofocus>
+            <label for="inputEmailRegister"  class="sr-only">Email Address</label>
+            <input type="email" id="inputEmailRegister" name="emailRegister" class="red form-control " placeholder="Email address" value="1@aol.com"  required autofocus>
           </div>
           <div class="form-group">
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password"  name="password1" class="red form-control" placeholder="Password" required>
+            <label for="inputPasswordRegister" class="sr-only">Password</label>
+            <input type="password" id="inputPasswordRegister" name="password1" class="red form-control" placeholder="Password" value="asdfjkl;" required>
           </div>
           <div class="form-group">
-            <label for="inputPasswordRepeat" class="sr-only">Repeat Password</label>
-            <input type="password" name="password2" class="red form-control" placeholder="Repeat Password"  required>
+            <label for="inputPasswordRepeatRegister" class="sr-only">Repeat Password</label>
+            <input type="password" id="inputPasswordRepeatRegister" name="password2" class="red form-control" placeholder="Repeat Password" value="asdfjkl;" required>
           </div>
           <button class="btn btn-lg btn-signup" type="submit">SIGN UP</button>
         </form>

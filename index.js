@@ -61,31 +61,45 @@ function checkEmail(val, cb) {
 
 app.use(express.static('public'));
 app.get('/', function(req, res) {
-    res.sendFile('index.html', {
-        root: __dirname
-    })
-    res.end();
-})
+    res.redirect('/all.html');
+});
+
+app.get('/result', function(req, res) {
+    res.redirect('/result.html');
+});
 
 // create application/json parser 
-var jsonParser = bodyParser.json()
+var jsonParser = bodyParser.json();
     // create application/x-www-form-urlencoded parser 
 var urlencodedParser = bodyParser.urlencoded({
     extended: false
-})
+});
 
-app.post("/", urlencodedParser, function(req, res) {
+app.post("/register", urlencodedParser, function(req, res) {
+    console.log("hit register");
     if (req.body.password1 === req.body.password2) {
-        var passwordHash = bcrypt.hashSync(req.body.password1, salt); // Hash the password with the salt
-        var user = {
-            userName: req.body.emailRegister,
-            password: passwordHash
-        };
-        console.log(user);
-        storeData(user);
+        checkEmail(req.body.emailRegister,function(cb) {
+            if (cb === undefined){
+                var passwordHash = bcrypt.hashSync(req.body.password1, salt); // Hash the password with the salt
+                var user = {
+                    userName: req.body.emailRegister,
+                    password: passwordHash
+                };
+                console.log(user);
+                storeData(user);
+                console.log("I've registered an user");
+                res.sendStatus(200);
+            }
+            else{
+                console.log(cb);
+                console.log('Register failed');
+                res.sendStatus(403);
+                //res.send("Please enter username and password because user already exists.")
+            }
+        })
     }
-    console.log("I've registered an user");
-    res.redirect('/');
+    console.log("end register");
+    //res.end();
 });
 
 app.use("/login", urlencodedParser, function(req, res) {
@@ -113,6 +127,7 @@ app.use("/login", urlencodedParser, function(req, res) {
         res.redirect('/');
     }
 });
+
 
 
 

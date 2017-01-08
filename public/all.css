@@ -1,0 +1,62 @@
+/*
+white FEFFFF 
+light green/blue: 88F9E5
+darker green/blue: 6BEED7 
+red: ED2855 
+light gray: D8DFDD
+dark gray: 7FA59E 
+*/
+body{
+}
+
+.jumbotron{
+    background-color:#FEFFFF;
+}
+
+.signin {
+  padding: 0.5rem 0;
+  border: none;
+  border-bottom: 2px solid #7FA59E;
+  box-shadow: none;
+  border-radius: 0px;
+}
+
+.signin:focus {
+  color: #464a4c;
+  background-color: #fff;
+  border-color: #ED2855;
+  box-shadow: none;
+  transition: border-color ease 1s;
+  outline: none;
+}
+
+.signin::-webkit-input-placeholder {
+  color: #7FA59E;
+  opacity: 1;
+}
+
+.signin::-moz-placeholder {
+  color: #7FA59E;
+  opacity: 1;
+}
+
+.signin:-ms-input-placeholder {
+  color: #7FA59E;
+  opacity: 1;
+}
+
+.signin::placeholder {
+  color: #7FA59E;
+  opacity: 1;
+}
+
+.btn-go{
+  border: 1px solid #D8DFDD;
+  background-color:#ED2855;
+  color: #FEFFFF;
+  border-radius:0px;
+}
+
+.btn-go:hover{
+    color:#fff;
+}

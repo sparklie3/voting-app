@@ -1,4 +1,10 @@
 $( document ).ready(function() {
+    
+    /*temp
+    $("#register").css("display","none");
+    $(".form-registeration").css("display","block");
+    */
+    
     console.log("ready!");
     $("#inputPassword").focusin(function(){
         console.log('clicked');

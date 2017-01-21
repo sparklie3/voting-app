@@ -8,12 +8,12 @@
 
     <title>Login</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="all.css">
+    <link rel="stylesheet" type="text/css" href="/public/all.css">
 
 </head>
 
 <body>
-    <nav class="navbar navbar navbar-fixed-top">
+    <nav class="navbar navbar navbar-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -25,15 +25,19 @@
 
             </div>
             <div id="navbar" class="navbar-collapse collapse">
-                <form class="navbar-form navbar-right">
+                <form id="formSignIn" class="navbar-form navbar-right">
+                    <div id="loginArea">
                     <div class="form-group">
-                        <input type="text" placeholder="Email" class="form-control signin" required>
+                        <input type="email" name="email" placeholder="Email" class="form-control signin" value="1@aol.com" required>
                     </div>
                     <div class="form-group">
-                        <input type="password" placeholder="Password" class="form-control signin" required>
+                        <input type="password" name="password" placeholder="Password" class="form-control signin" value="asdfjkl;" required>
                     </div>
                     <button type="submit" class="btn btn-go">Sign in</button>
+                    </div>
+                    <button type="button" id="signOutButton" class="btn btn-go hide">Logout</button>
                 </form>
+                    
             </div>
             <!--/.navbar-collapse -->
         </div>
@@ -44,7 +48,7 @@
         <div class="container">
             <h1>Simple Voting App</h1>
             <p>Build simple polls and share with friends or strangers. See results from other polls. </p>
-            <p><a href="/login.html">Login</a> to create a poll and register if you don't have an account.</p>
+            <p><a href="/public/login.html">Login</a> to create a poll and register if you don't have an account.</p>
             <!--<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>-->
         </div>
     </div>
@@ -55,12 +59,12 @@
             <div class="col-md-4">
                 <p><a class="btn btn-default" href="#" role="button">New Poll</a></p>
                 
-                You are not logged in. To create a polls, please log in. 
-                <form class="hide">
+                <p class="show">You are not logged in. To create a polls, please log in. </p>
+                <form id="newPoll" class="hide">
 
                     <div class="form-group">
                         <label for="inputQuestion">Poll Questions</label>
-                        <input type="text" id="inputQuestion" class="form-control " placeholder="What's your favorite dog?" required autofocus>
+                        <input type="text" id="inputQuestion" name="question" class="form-control" placeholder="What's your favorite dog?" value="question" required autofocus>
                     </div>
 
                     <!--<div class="form-group">
@@ -72,7 +76,7 @@
                     <label>Answer Options</label>
                     <div class="form-group">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Golden Retriever"  required autofocus>
+                        <input type="text" class="form-control" name="option" placeholder="Golden Retriever" value="options" required autofocus>
                         <span class="input-group-btn">
                             <button class="btn btn-default addOptions" type="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
                         </span>
@@ -91,12 +95,22 @@
             <div class="col-md-4">
                 <p><a class="btn btn-default" href="#" role="button">My Polls</a></p>
                 
-                You are not logged in. To view your polls, please log in. 
+                <p class="show">You are not logged in. To view your polls, please log in.</p>
+                <div class="list-group hide" id="myPolls">
+                    <a href="#" class="list-group-item">Cras justo odio</a>
+                    <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+                    <a href="#" class="list-group-item">Morbi leo risus</a>
+                    <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+                    <a href="#" class="list-group-item">Vestibulum at eros</a>
+                </div>
             </div>
+            
+            
+            
             <div class="col-md-4">
                 <p><a class="btn btn-default" href="#" role="button">All Poll</a></p>
-                <div class="list-group">
-                    <a href="#" class="list-group-item active">Cras justo odio</a>
+                <div class="list-group" id="allPools">
+                    <a href="#" class="list-group-item">Cras justo odio</a>
                     <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
                     <a href="#" class="list-group-item">Morbi leo risus</a>
                     <a href="#" class="list-group-item">Porta ac consectetur ac</a>
@@ -120,7 +134,7 @@
 
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-    <script src="all.js"></script>
+    <script src="/public/all.js"></script>
 
 </body>
 

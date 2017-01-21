@@ -42,5 +42,27 @@ $( document ).ready(function() {
         $("#register").css("display","flex");
     })
     
+    $("#formRegister").submit(function(event){
+        $.ajax({
+            type: "POST",
+            url: "/register",
+            data: $("#formRegister").serialize(),
+            success: function (response) {
+                
+                    $(".alert").empty().append(
+                        '<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span class="sr-only">Success:</span> Registered. Now login.'
+                        )
+                
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                if(xhr.status===403) {
+                    $(".alert").empty().append(
+                        '<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span><span class="sr-only">Error:</span> Unable to register. Try again.' 
+                        )
+                }
+            }
+        });
+        event.preventDefault();
+    });
     
 });

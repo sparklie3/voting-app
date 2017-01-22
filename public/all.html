@@ -64,7 +64,7 @@
 
                     <div class="form-group">
                         <label for="inputQuestion">Poll Questions</label>
-                        <input type="text" id="inputQuestion" name="question" class="form-control" placeholder="What's your favorite dog?" value="question" required autofocus>
+                        <input type="text" id="inputQuestion" name="question" class="form-control" placeholder="What's your favorite dog?" value="question" required >
                     </div>
 
                     <!--<div class="form-group">
@@ -76,7 +76,7 @@
                     <label>Answer Options</label>
                     <div class="form-group">
                     <div class="input-group">
-                        <input type="text" class="form-control" name="option" placeholder="Golden Retriever" value="options" required autofocus>
+                        <input type="text" class="form-control" name="option" placeholder="Golden Retriever" value="options" required>
                         <span class="input-group-btn">
                             <button class="btn btn-default addOptions" type="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
                         </span>
@@ -84,7 +84,8 @@
 
                     </div>
                     
-                    <button class="btn btn-primary btn-block" type="submit">ADD POLL</button>
+                    <button class="btn btn-primary" type="submit">ADD POLL</button>
+                    <button class="btn" type="reset">Reset</button>
                     
                     
                     
@@ -96,12 +97,8 @@
                 <p><a class="btn btn-default" href="#" role="button">My Polls</a></p>
                 
                 <p class="show">You are not logged in. To view your polls, please log in.</p>
-                <div class="list-group hide" id="myPolls">
-                    <a href="#" class="list-group-item">Cras justo odio</a>
-                    <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-                    <a href="#" class="list-group-item">Morbi leo risus</a>
-                    <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-                    <a href="#" class="list-group-item">Vestibulum at eros</a>
+                <div class="list-group" id="myPolls">
+                    
                 </div>
             </div>
             
@@ -109,12 +106,8 @@
             
             <div class="col-md-4">
                 <p><a class="btn btn-default" href="#" role="button">All Poll</a></p>
-                <div class="list-group" id="allPools">
-                    <a href="#" class="list-group-item">Cras justo odio</a>
-                    <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-                    <a href="#" class="list-group-item">Morbi leo risus</a>
-                    <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-                    <a href="#" class="list-group-item">Vestibulum at eros</a>
+                <div class="list-group" id="allPolls">
+                    
                 </div>
 
 

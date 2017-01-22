@@ -3,7 +3,8 @@ var session = require('client-sessions');
 var path = require('path');
 var bodyParser = require("body-parser");
 var bcrypt = require('bcrypt'); // Load the bcrypt module
-var MongoClient = require('mongodb').MongoClient
+var MongoClient = require('mongodb').MongoClient;
+var transform = require('./transform.js');
 
 var app = express();
 const salt = bcrypt.genSaltSync(10); // Generate a salt
@@ -116,16 +117,20 @@ function findPollsByUser(email, cb) {
 function findAllPolls(cb) {
     var query = {
         type: 'search',
-        search: {},
+        search: {
+            questions: {
+                $exists: true
+            }
+        },
         filter: {
             _id: 0,
             userName: 1,
-            'questions': 1
+            questions: 1
         }
     };
 
     db(mongodbUrl, collectionName, query, function(data) {
-        cb(data[0]);
+        cb(data);
     });
 }
 
@@ -144,35 +149,57 @@ function checkSession(input) {
     return false;
 }
 
-
+// don't know how to use next()
 app.get('/', function(req, res) {
-    findAllPolls(function(data) {
-        //console.log(data);
-        //console.log(cb.questions.length);
-        for (var each of data.questions) {
-            console.log(each.question);
-        }
-    });
-    
     res.sendFile('all.html', {
         root: path.join(__dirname, '/public')
     });
-    
-    if (checkSession(req.session.user)) {
-        console.log("has logged in");
-        
-        //if you are logged in, get the polls for a specific user
-        findPollsByUser(req.session.user,function(data){
-           console.log(data); 
+});
+
+app.post("/", function(req, res) {
+    var userName = req.session.user;
+    var allPollData = new Promise(function(resolve, reject) {
+            findAllPolls(function(data) {
+                resolve(data);
+            });
         });
+        
+    if (checkSession(userName)) {
+        console.log("has logged in");
+        //if you are logged in, get the polls for a specific user and send
+        
+
+        allPollData.then(function(data) {
+            //transforms data to only send over the user specific data
+            var output = {
+                all: data,
+                user: transform.transform(userName, data)
+            };
+            console.log(output);
+            res.send(output);
+            res.end();
+        }).catch(function(err) {
+            throw err;
+        });
+
     }
     else {
         console.log("hasn't logged in");
+
+        allPollData.then(function(data) {
+            //transforms data to only send over the user specific data
+            var output = {
+                all: data,
+            };
+            console.log(output);
+            res.send(output);
+            res.end();
+        }).catch(function(err) {
+            throw err;
+        });
+
     }
-    
 });
-
-
 
 
 
@@ -218,12 +245,27 @@ app.post("/login", urlencodedParser, function(req, res) {
                     console.log("User " + req.body.email + " has correct password!");
                     //this sets the session
                     req.session.user = userNameEntered;
-                    
+
                     //this get's the poll data for a specific user
-                    findPollsByUser(userNameEntered,function(data){
-                       console.log(data); 
+                    var allPollData = new Promise(function(resolve, reject) {
+                        findAllPolls(function(data) {
+                            resolve(data);
+                        });
                     });
-                    
+
+                    allPollData.then(function(data) {
+                        //transforms data to only send over the user specific data
+                        var output = {
+                            all: data,
+                            user: transform.transform(userNameEntered, data)
+                        };
+                        console.log(output);
+                        res.send(output);
+                        res.end();
+                    }).catch(function(err) {
+                        throw err;
+                    });
+
                     res.sendStatus(200);
                 }
                 else {
@@ -270,18 +312,18 @@ function updateDataWithQuestion(email, insertData, cb) {
 
 app.post("/newPoll", urlencodedParser, function(req, res) {
     console.log('hit new poll');
-    if (checkSession(req.session.user)){
+    if (checkSession(req.session.user)) {
         var email = req.session.user;
         var data = {
             "question": req.body.question,
             "options": req.body.option
         };
-        updateDataWithQuestion(email, data, function(data){
+        updateDataWithQuestion(email, data, function(data) {
             console.log(data);
         });
-        res.sendStatus(200);    
+        res.sendStatus(200);
     }
-    else{
+    else {
         console.log("can't create new poll because not logged in");
         res.sendStatus(403);
     }

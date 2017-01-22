@@ -14,12 +14,57 @@ $(document).ready(function() {
         $("p.show").removeClass("show").addClass("hide");
     }
     
+    function extractAllQuestions(data){
+        //console.log(data[1].questions);
+        for (var i=0,array=[];  i<data.length;i++){
+            for (var j=0; j<data[i].questions.length;j++){
+                array.push(data[i].questions[j].question);
+            }
+        }
+        console.log(array);
+        return array;
+    }
+    
+    
+    function transformData(data){
+        for (var i=0, array =[]; i<data.length;i++){
+            array.push(data[i].question);
+        }
+        console.log(array);
+        return array;
+    }
+    
+    function displayPollQuestions(data){
+        var array = [];
+        for (let value of data) {
+            //need to insert a dynamic href to show the result
+            var string = "<a href='#' class='list-group-item'>"+value+"</a>";
+            array.push(string);
+        }
+        console.log(array);
+        return array;
+        
+    }
+    
+    
+    
     $.ajax({
             type: "POST",
             url: "/",
+            data: "",
             success: function (response) {
-                console.log(response);
-                checkSignedIn();
+                //for all questions
+                var allTables = displayPollQuestions(extractAllQuestions(response.all));
+                $("#allPolls").append(allTables.join(""));
+                
+                //for user specific questions
+                if (response.user !== undefined){
+                    var tables = displayPollQuestions(transformData(response.user));
+                    $("#myPolls").append(tables.join(""));
+                    checkSignedIn();
+                }
+                
+                
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 if(xhr.status===403) {
@@ -40,7 +85,7 @@ $(document).ready(function() {
             url: "/login",
             data: $("#formSignIn").serialize(),
             success: function (response) {
-                checkSignedIn();
+                window.location.reload();
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 if(xhr.status===403) {

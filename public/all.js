@@ -58,7 +58,10 @@ $(document).ready(function() {
                 $("#allPolls").append(allTables.join(""));
                 
                 //for user specific questions
-                if (response.user !== undefined){
+                if (response.user === "none"){
+                    checkSignedIn();
+
+                }else if (response.user !== undefined){
                     var tables = displayPollQuestions(transformData(response.user));
                     $("#myPolls").append(tables.join(""));
                     checkSignedIn();
@@ -104,7 +107,8 @@ $(document).ready(function() {
             url: "/newPoll",
             data: $("#newPoll").serialize(),
             success: function (response) {
-                alert('created poll');
+                //alert('created poll');
+                window.location.reload();
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 if(xhr.status===403) {

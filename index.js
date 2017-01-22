@@ -5,6 +5,7 @@ var bodyParser = require("body-parser");
 var bcrypt = require('bcrypt'); // Load the bcrypt module
 var MongoClient = require('mongodb').MongoClient;
 var transform = require('./transform.js');
+const uuidV1 = require('uuid/v1');
 
 var app = express();
 const salt = bcrypt.genSaltSync(10); // Generate a salt
@@ -173,7 +174,7 @@ app.post("/", function(req, res) {
             //transforms data to only send over the user specific data
             var output = {
                 all: data,
-                user: transform.transform(userName, data)
+                user: transform.transform(userName, data) || "none"
             };
             console.log(output);
             res.send(output);
@@ -189,7 +190,8 @@ app.post("/", function(req, res) {
         allPollData.then(function(data) {
             //transforms data to only send over the user specific data
             var output = {
-                all: data,
+                all: data
+                
             };
             console.log(output);
             res.send(output);
@@ -315,6 +317,7 @@ app.post("/newPoll", urlencodedParser, function(req, res) {
     if (checkSession(req.session.user)) {
         var email = req.session.user;
         var data = {
+            "id": uuidV1(),
             "question": req.body.question,
             "options": req.body.option
         };
